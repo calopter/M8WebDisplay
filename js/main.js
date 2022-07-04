@@ -3,6 +3,7 @@
 
 import { UsbConnection } from './usb.js';
 import { SerialConnection } from './serial.js';
+import { RTCConnection } from './rtc.js';
 import { Parser } from './parser.js';
 import { Renderer as OldRenderer } from './renderer.js';
 import { Renderer as GlRenderer } from './gl-renderer.js';
@@ -147,6 +148,8 @@ if (navigator.serial) {
 } else {
     show('#no-serial-usb');
 }
+
+setupConnection(new RTCConnection(parser, connectionChanged), '#serial-fail');
 
 function setupConnection(connection, errorMessage) {
     Input.setup(connection);
